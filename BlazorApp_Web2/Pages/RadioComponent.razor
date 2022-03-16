@@ -1,0 +1,9 @@
+﻿<div class="form-check">
+        <input class="form-check-input" type="radio" name="optionsRadios" id="@("radio"+i)" checked="@(i==1)">
+        <label class="form-check-label" for="@("radio"+i)">@label @i</label>
+    </div>
+
+@code {
+    [Parameter] public int i { get; set; }
+    [Parameter] public string label { get;  set; }
+}

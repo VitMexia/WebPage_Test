@@ -1,0 +1,63 @@
+﻿@page "/sample"
+@inject HttpClient Http
+
+<PageTitle>Sample</PageTitle>
+<h1>Sample</h1>
+
+<div class="row">
+<h5>Multiple Choice Example 1:</h5>
+
+
+    @for (var i = 1; i < 5; ++i)
+    {
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" id="@("checkbox"+i)" value="">
+            <label class="form-check-label" for="@("checkbox"+i)"> Option @i </label>
+        </div>
+    }
+</div>
+
+<div class="row">
+<h5>Multiple Choice Example 2:</h5>
+
+
+    @for (var i = 1; i < 5; ++i)
+    {
+        <RadioComponent i="@i" label="this is the radio option label" />
+    }
+</div>
+
+<div class="row">
+    <div class="input-group mb-3">
+        <span class="input-group-text" id="inputGroup-sizing-default">Short: </span>
+        <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-default">
+    </div>
+</div>
+<div class="row">
+    <div class="input-group">
+        <span class="input-group-text">Long: </span>
+        <textarea class="form-control" aria-label="With textarea" id="long" />
+    </div>
+</div>
+
+<div class="row">
+    <div class="input-group">
+        <button type="button" class="btn btn-outline-primary" @onclick="test">Button submit</button>
+    </div>
+</div>
+
+
+
+@code {
+    private async void test()
+    {
+        try
+        {
+            var forecasts = await Http.GetStringAsync("http://localhost:2018/recipes/searchtop?number_recipes=1");
+        }
+        catch (Exception ex)
+        {
+            var e = ex;
+        }
+    }
+}
