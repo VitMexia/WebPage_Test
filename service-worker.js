@@ -10,6 +10,8 @@ const cacheNamePrefix = 'offline-cache-';
 const cacheName = `${cacheNamePrefix}${self.assetsManifest.version}`;
 const offlineAssetsInclude = [ /\.dll$/, /\.pdb$/, /\.wasm/, /\.html/, /\.js$/, /\.json$/, /\.css$/, /\.woff$/, /\.png$/, /\.jpe?g$/, /\.gif$/, /\.ico$/, /\.blat$/, /\.dat$/ ];
 const offlineAssetsExclude = [ /^service-worker\.js$/ ];
+const nonRootFiles = files.map(f => f.startsWith('/') ? f.substr(1) : f);
+const nonRootShell = shell.map(f => f.startsWith('/') ? f.substr(1) : f);
 
 async function onInstall(event) {
     console.info('Service worker: Install');
